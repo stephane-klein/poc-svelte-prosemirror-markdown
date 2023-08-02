@@ -43,3 +43,15 @@
 Hello
 
 <div bind:this={element}></div>
+
+
+<p>
+    <button
+        on:click={
+        () => {
+            console.log('ici1');
+            console.log(defaultMarkdownSerializer.serialize(editor.state.doc));
+        }
+        }
+    >Export to markdown</button> (see result in console log)
+</p>
