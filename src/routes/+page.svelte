@@ -45,8 +45,6 @@ Hello
         }
     })
 </script>
-Hello
-
 {#if viewMode == 'prose'}
     <div bind:this={element}></div>
 {:else if viewMode == 'preview'}
@@ -58,8 +56,6 @@ Hello
     <label for="markdown">Markdown </label><input bind:group={viewMode} type="radio" id="markdown" name="view_mode" value="markdown" />|
     <label for="preview">Preview </label><input bind:group={viewMode} type="radio" id="preview" name="view_mode" value="preview" />
 </p>
-
-{viewMode}
 
 <p>
     <button
