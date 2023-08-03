@@ -16,7 +16,7 @@
 
     import {EditorView} from "prosemirror-view"
     import {EditorState} from "prosemirror-state"
-    import {schema, defaultMarkdownParser, defaultMarkdownSerializer} from "prosemirror-markdown"
+    import { schema, defaultMarkdownParser, defaultMarkdownSerializer} from "../prosemirror-markdown/index.ts";
     import {exampleSetup} from "prosemirror-example-setup"
 
     let element;
@@ -27,7 +27,9 @@
             element,
             {
                 state: EditorState.create({
-                    doc: defaultMarkdownParser.parse("Hello **world**"),
+                    doc: defaultMarkdownParser.parse(`
+Hello
+                    `),
                     plugins: exampleSetup({schema})
                 }),
             }
@@ -38,7 +40,7 @@
         if (editor) {
             editor.destroy()
         }
-    });
+    })
 </script>
 Hello
 
