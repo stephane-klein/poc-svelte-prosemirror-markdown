@@ -16,7 +16,7 @@
 
     import {EditorView} from "prosemirror-view"
     import {EditorState} from "prosemirror-state"
-    import { schema, defaultMarkdownParser, defaultMarkdownSerializer} from "../prosemirror-markdown/index.ts";
+    import {schema, defaultMarkdownParser, defaultMarkdownSerializer} from "../prosemirror-markdown/index.ts";
     import {exampleSetup} from "prosemirror-example-setup"
 
     let element;
