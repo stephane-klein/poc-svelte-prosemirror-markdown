@@ -45,10 +45,14 @@ Hello
         }
     })
 </script>
-{#if viewMode == 'prose'}
-    <div bind:this={element}></div>
-{:else if viewMode == 'preview'}
-{@html md.render(defaultMarkdownSerializer.serialize(editor.state.doc))}
+
+<div
+    style:display={(viewMode == 'prose' ? 'block' : 'none')}
+    bind:this={element}
+></div>
+
+{#if viewMode == 'preview'}
+    {@html md.render(defaultMarkdownSerializer.serialize(editor.state.doc))}
 {/if}
 
 <p>
@@ -57,13 +61,3 @@ Hello
     <label for="preview">Preview </label><input bind:group={viewMode} type="radio" id="preview" name="view_mode" value="preview" />
 </p>
 
-<p>
-    <button
-        on:click={
-        () => {
-            console.log('ici1');
-            console.log(defaultMarkdownSerializer.serialize(editor.state.doc));
-        }
-        }
-    >Export to markdown</button> (see result in console log)
-</p>
