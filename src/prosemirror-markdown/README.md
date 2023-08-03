@@ -6,3 +6,5 @@ I haven't found a solution to modify this configuration by
 importing the `prosemirror-markdown` package.
 
 If you have a solution, please don't hesitate to share it with me at <contact@stephane-klein.info>.
+
+See also this issue https://github.com/ProseMirror/prosemirror-markdown/issues/108
