@@ -332,3 +332,10 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror p { margin-bottom: 1em }
+
+.ProseMirror ul li p:first-child {
+    margin-top: 0;
+}
+.ProseMirror ul li p:last-child {
+    margin-bottom: 0;
+}
