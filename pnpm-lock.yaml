@@ -11,17 +11,23 @@ dependencies:
   '@sveltejs/kit':
     specifier: 1.22.3
     version: 1.22.3(svelte@4.1.1)(vite@4.4.7)
+  markdown-it:
+    specifier: ^13.0.1
+    version: 13.0.1
   prosemirror-example-setup:
-    specifier: ^1.2.2
+    specifier: 1.2.2
     version: 1.2.2
-  prosemirror-markdown:
-    specifier: ^1.11.1
-    version: 1.11.1
+  prosemirror-inputrules:
+    specifier: ^1.2.1
+    version: 1.2.1
+  prosemirror-model:
+    specifier: ^1.19.3
+    version: 1.19.3
   prosemirror-state:
-    specifier: ^1.4.3
+    specifier: 1.4.3
     version: 1.4.3
   prosemirror-view:
-    specifier: ^1.31.7
+    specifier: 1.31.7
     version: 1.31.7
   svelte:
     specifier: 4.1.1
@@ -2065,13 +2071,6 @@ packages:
     dependencies:
       prosemirror-state: 1.4.3
       w3c-keyname: 2.2.8
-    dev: false
-
-  /prosemirror-markdown@1.11.1:
-    resolution: {integrity: sha512-CLOieKoaSSEusKyYcXIj8v2qHGLW+tnuffci+8678Sen48NEFQE7M3o0Nx0gj9v63iVDj+yLibj2gCe8eb3jIw==}
-    dependencies:
-      markdown-it: 13.0.1
-      prosemirror-model: 1.19.3
     dev: false
 
   /prosemirror-menu@1.2.2:
