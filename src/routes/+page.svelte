@@ -21,6 +21,7 @@
 
     let element;
     let editor;
+    let viewMode = 'prose';
 
     onMount(() => {
         editor = new EditorView(
@@ -46,6 +47,13 @@ Hello
 
 <div bind:this={element}></div>
 
+<p>
+    <label for="prose">Prose </label><input bind:group={viewMode} type="radio" id="prose" name="view_mode" value="prose" />|
+    <label for="markdown">Markdown </label><input bind:group={viewMode} type="radio" id="markdown" name="view_mode" value="markdown" />|
+    <label for="preview">Preview </label><input bind:group={viewMode} type="radio" id="preview" name="view_mode" value="preview" />
+</p>
+
+{viewMode}
 
 <p>
     <button
