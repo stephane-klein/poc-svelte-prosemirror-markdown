@@ -58,7 +58,7 @@ export const schema = new Schema({
     ordered_list: {
       content: "list_item+",
       group: "block",
-      attrs: {order: {default: 1}, tight: {default: false}},
+      attrs: {order: {default: 1}, tight: {default: true}},
       parseDOM: [{tag: "ol", getAttrs(dom) {
         return {order: (dom as HTMLElement).hasAttribute("start") ? +(dom as HTMLElement).getAttribute("start")! : 1,
                 tight: (dom as HTMLElement).hasAttribute("data-tight")}
@@ -72,7 +72,7 @@ export const schema = new Schema({
     bullet_list: {
       content: "list_item+",
       group: "block",
-      attrs: {tight: {default: false}},
+      attrs: {tight: {default: true}},
       parseDOM: [{tag: "ul", getAttrs: dom => ({tight: (dom as HTMLElement).hasAttribute("data-tight")})}],
       toDOM(node) { return ["ul", {"data-tight": node.attrs.tight ? "true" : null}, 0] }
     },
