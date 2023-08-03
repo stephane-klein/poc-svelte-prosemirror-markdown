@@ -1,6 +1,7 @@
 <script>
     import './editor.css';
     import { onMount, onDestroy } from 'svelte'
+    import MarkdownIt from 'markdown-it';
     /*
     class MarkdownView {
         constructor(target, content) {
@@ -22,6 +23,7 @@
     let element;
     let editor;
     let viewMode = 'prose';
+    const md = new MarkdownIt();
 
     onMount(() => {
         editor = new EditorView(
@@ -45,7 +47,11 @@ Hello
 </script>
 Hello
 
-<div bind:this={element}></div>
+{#if viewMode == 'prose'}
+    <div bind:this={element}></div>
+{:else if viewMode == 'preview'}
+{@html md.render(defaultMarkdownSerializer.serialize(editor.state.doc))}
+{/if}
 
 <p>
     <label for="prose">Prose </label><input bind:group={viewMode} type="radio" id="prose" name="view_mode" value="prose" />|
