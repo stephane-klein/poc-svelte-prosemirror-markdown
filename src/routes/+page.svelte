@@ -9,14 +9,14 @@
     import {exampleSetup as proseSetup} from "prosemirror-example-setup"
 
     let proseElement;
-    let proseEditor;
+    let proseEditorView;
     let viewMode = 'prose';
     let currentEditor = 'prose';
     let markdownContent;
     const md = new MarkdownIt();
 
     function createProseEditor(content) {
-        proseEditor = new ProseEditorView(
+        proseEditorView = new ProseEditorView(
             proseElement,
             {
                 state: ProseEditorState.create({
@@ -37,15 +37,15 @@ Hello world!
     });
 
     onDestroy(() => {
-        if (proseEditor) {
-            proseEditor.destroy()
+        if (proseEditorView) {
+            proseEditorView.destroy()
         }
     })
 
     $: if ((viewMode == 'markdown') && (currentEditor != 'markdown')) {
         currentEditor = 'markdown';
-        proseEditor.destroy();
-        markdownContent = defaultMarkdownSerializer.serialize(proseEditor.state.doc);
+        proseEditorView.destroy();
+        markdownContent = defaultMarkdownSerializer.serialize(proseEditorView.state.doc);
     } else if ((viewMode == 'prose') && (currentEditor != 'prose')) {
         currentEditor = 'prose';
         createProseEditor(markdownContent);
@@ -58,7 +58,7 @@ Hello world!
 ></div>
 
 {#if viewMode == 'preview'}
-    {@html md.render(defaultMarkdownSerializer.serialize(proseEditor.state.doc))}
+    {@html md.render(defaultMarkdownSerializer.serialize(proseEditorView.state.doc))}
 {:else if viewMode == 'markdown'}
     <textarea bind:value={markdownContent} style="height: 20em;"></textarea>
 {/if}
