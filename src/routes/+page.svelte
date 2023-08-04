@@ -3,8 +3,8 @@
     import { onMount, onDestroy } from 'svelte'
     import MarkdownIt from 'markdown-it';
 
-    import {EditorView} from "prosemirror-view"
-    import {EditorState} from "prosemirror-state"
+    import {EditorView as ProseEditorView} from "prosemirror-view"
+    import {EditorState as ProseEditorState} from "prosemirror-state"
     import {schema, defaultMarkdownParser, defaultMarkdownSerializer} from "../prosemirror-markdown/index.ts";
     import {exampleSetup} from "prosemirror-example-setup"
 
@@ -16,10 +16,10 @@
     const md = new MarkdownIt();
 
     function createProseEditor(content) {
-        editor = new EditorView(
+        editor = new ProseEditorView(
             element,
             {
-                state: EditorState.create({
+                state: ProseEditorState.create({
                     doc: defaultMarkdownParser.parse(content),
                     plugins: exampleSetup({schema})
                 }),
