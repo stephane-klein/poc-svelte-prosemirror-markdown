@@ -23,21 +23,29 @@
     let element;
     let editor;
     let viewMode = 'prose';
+    let currentEditor = 'prose';
     let markdownContent;
     const md = new MarkdownIt();
 
-    onMount(() => {
+    function createProseEditor(content) {
         editor = new EditorView(
             element,
             {
                 state: EditorState.create({
-                    doc: defaultMarkdownParser.parse(`
-Hello
-                    `),
+                    doc: defaultMarkdownParser.parse(content),
                     plugins: exampleSetup({schema})
                 }),
             }
         );
+    }
+
+    onMount(() => {
+        createProseEditor(`
+Hello world!
+
+* item1
+* item2
+        `);
     });
 
     onDestroy(() => {
@@ -46,8 +54,13 @@ Hello
         }
     })
 
-    $: if (viewMode == 'markdown') {
+    $: if ((viewMode == 'markdown') && (currentEditor != 'markdown')) {
+        currentEditor = 'markdown';
+        editor.destroy();
         markdownContent = defaultMarkdownSerializer.serialize(editor.state.doc);
+    } else if ((viewMode == 'prose') && (currentEditor != 'prose')) {
+        currentEditor = 'prose';
+        createProseEditor(markdownContent);
     }
 </script>
 
