@@ -8,16 +8,16 @@
     import {schema as proseMarkdownSchema, defaultMarkdownParser, defaultMarkdownSerializer} from "../prosemirror-markdown/index.ts";
     import {exampleSetup as proseSetup} from "prosemirror-example-setup"
 
-    let element;
-    let editor;
+    let proseElement;
+    let proseEditor;
     let viewMode = 'prose';
     let currentEditor = 'prose';
     let markdownContent;
     const md = new MarkdownIt();
 
     function createProseEditor(content) {
-        editor = new ProseEditorView(
-            element,
+        proseEditor = new ProseEditorView(
+            proseElement,
             {
                 state: ProseEditorState.create({
                     doc: defaultMarkdownParser.parse(content),
@@ -37,15 +37,15 @@ Hello world!
     });
 
     onDestroy(() => {
-        if (editor) {
-            editor.destroy()
+        if (proseEditor) {
+            proseEditor.destroy()
         }
     })
 
     $: if ((viewMode == 'markdown') && (currentEditor != 'markdown')) {
         currentEditor = 'markdown';
-        editor.destroy();
-        markdownContent = defaultMarkdownSerializer.serialize(editor.state.doc);
+        proseEditor.destroy();
+        markdownContent = defaultMarkdownSerializer.serialize(proseEditor.state.doc);
     } else if ((viewMode == 'prose') && (currentEditor != 'prose')) {
         currentEditor = 'prose';
         createProseEditor(markdownContent);
@@ -54,11 +54,11 @@ Hello world!
 
 <div
     style:display={(viewMode == 'prose' ? 'block' : 'none')}
-    bind:this={element}
+    bind:this={proseElement}
 ></div>
 
 {#if viewMode == 'preview'}
-    {@html md.render(defaultMarkdownSerializer.serialize(editor.state.doc))}
+    {@html md.render(defaultMarkdownSerializer.serialize(proseEditor.state.doc))}
 {:else if viewMode == 'markdown'}
     <textarea bind:value={markdownContent} style="height: 20em;"></textarea>
 {/if}
