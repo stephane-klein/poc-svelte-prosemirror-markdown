@@ -3,7 +3,9 @@
     import { onMount, onDestroy } from 'svelte'
     import MarkdownIt from 'markdown-it';
 
-    import {basicSetup as CodeBasicSetup, EditorView as CodeEditorView} from "codemirror";
+    import {basicSetup as CodeBasicSetup} from "codemirror";
+    import {EditorView as CodeEditorView, keymap} from "@codemirror/view";
+    import {indentWithTab} from "@codemirror/commands"
     import {Compartment} from "@codemirror/state";
     import {markdown} from "@codemirror/lang-markdown";
 
@@ -43,6 +45,7 @@
             doc: content,
             extensions: [
                 CodeBasicSetup,
+                keymap.of([indentWithTab]),
                 languageConf.of(markdown())
             ]
         });
