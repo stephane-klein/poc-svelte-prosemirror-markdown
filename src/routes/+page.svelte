@@ -5,8 +5,8 @@
 
     import {EditorView as ProseEditorView} from "prosemirror-view"
     import {EditorState as ProseEditorState} from "prosemirror-state"
-    import {schema, defaultMarkdownParser, defaultMarkdownSerializer} from "../prosemirror-markdown/index.ts";
-    import {exampleSetup} from "prosemirror-example-setup"
+    import {schema as proseMarkdownSchema, defaultMarkdownParser, defaultMarkdownSerializer} from "../prosemirror-markdown/index.ts";
+    import {exampleSetup as proseSetup} from "prosemirror-example-setup"
 
     let element;
     let editor;
@@ -21,7 +21,7 @@
             {
                 state: ProseEditorState.create({
                     doc: defaultMarkdownParser.parse(content),
-                    plugins: exampleSetup({schema})
+                    plugins: proseSetup({schema: proseMarkdownSchema})
                 }),
             }
         );
