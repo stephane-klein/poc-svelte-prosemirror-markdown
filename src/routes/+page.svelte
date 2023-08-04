@@ -23,6 +23,7 @@
     let element;
     let editor;
     let viewMode = 'prose';
+    let markdownContent;
     const md = new MarkdownIt();
 
     onMount(() => {
@@ -44,6 +45,10 @@ Hello
             editor.destroy()
         }
     })
+
+    $: if (viewMode == 'markdown') {
+        markdownContent = defaultMarkdownSerializer.serialize(editor.state.doc);
+    }
 </script>
 
 <div
@@ -53,6 +58,8 @@ Hello
 
 {#if viewMode == 'preview'}
     {@html md.render(defaultMarkdownSerializer.serialize(editor.state.doc))}
+{:else if viewMode == 'markdown'}
+    <textarea bind:value={markdownContent} style="height: 20em;"></textarea>
 {/if}
 
 <p>
