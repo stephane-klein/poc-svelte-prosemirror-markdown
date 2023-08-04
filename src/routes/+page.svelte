@@ -80,6 +80,12 @@ Hello world!
         markdownContent = codeEditorView.state.doc.toString();
         codeEditorView.destroy();
         createProseEditor(markdownContent);
+    } else if (viewMode == 'preview') {
+        if (currentEditor == 'prose') {
+            markdownContent = defaultMarkdownSerializer.serialize(proseEditorView.state.doc);
+        } else if (currentEditor == 'markdown') {
+            markdownContent = codeEditorView.state.doc.toString();
+        }
     }
 </script>
 
